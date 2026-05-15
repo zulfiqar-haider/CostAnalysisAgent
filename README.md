@@ -113,8 +113,7 @@ Before deployment, ensure the following services and permissions are available.
 
 Trusted Advisor cost optimization recommendations require one of the following:
 
-- AWS Business Support or - AWS Enterprise On-Ramp
-- AWS Enterprise Support
+- Support Plan => AWS Business Support
 
 **Basic Support is not sufficient for full cost optimization recommendations.**
 
