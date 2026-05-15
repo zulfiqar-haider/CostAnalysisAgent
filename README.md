@@ -15,7 +15,7 @@ Built on Amazon Bedrock multi-agent collaboration, the solution combines AWS cos
 
 This project is **forked and enhanced from the AWS sample implementation**:
 
-https://github.com/aws-solutions-library-samples/guidance-for-cost-analysis-and-optimization-with-amazon-bedrock-agents
+(https://aws.amazon.com/blogs/machine-learning/build-a-finops-agent-using-amazon-bedrock-with-multi-agent-capability-and-amazon-nova-as-the-foundation-model/)
 
 ---
 
@@ -294,4 +294,4 @@ Potential roadmap items:
 
 This project is based on AWS sample guidance and has been customised and enhanced for improved AWS FinOps use cases.
 Original AWS sample:
-https://github.com/aws-solutions-library-samples/guidance-for-cost-analysis-and-optimization-with-amazon-bedrock-agents
+[https://github.com/aws-solutions-library-samples/guidance-for-cost-analysis-and-optimization-with-amazon-bedrock-agents]
