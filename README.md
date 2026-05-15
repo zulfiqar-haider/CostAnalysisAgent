@@ -9,33 +9,17 @@
 
 # Overview
 
-The FinOps Cost Intelligence Agent is an AI-powered AWS FinOps assistant that provides:
+FinOps Cost Intelligence Agent is an AI-powered AWS FinOps assistant that helps organisations analyse AWS spend, understand cost drivers, and identify optimization opportunities using natural language.
 
-- AWS cost analysis
-- spend visibility
-- linked account breakdowns
-- regional cost analysis
-- usage insights
-- Trusted Advisor optimization recommendations
-- savings opportunity prioritization
+Built on Amazon Bedrock multi-agent collaboration, the solution combines AWS cost analytics, Trusted Advisor recommendations, and a web-based chatbot experience to provide actionable FinOps insights.
 
-The solution leverages:
-
-- Amazon Bedrock Agents
-- Amazon Nova foundation models
-- AWS Cost Explorer
-- AWS Trusted Advisor
-- AWS Lambda
-- Amazon Cognito
-- AWS Amplify
-
-This project is forked and enhanced from the AWS sample implementation:
+This project is **forked and enhanced from the AWS sample implementation**:
 
 https://github.com/aws-solutions-library-samples/guidance-for-cost-analysis-and-optimization-with-amazon-bedrock-agents
 
 ---
 
-# Technology Stack
+# Solution Technology Stack
 
 | Layer | Technology |
 |------|------------|
@@ -52,24 +36,19 @@ https://github.com/aws-solutions-library-samples/guidance-for-cost-analysis-and-
 
 # Key Enhancements Over AWS Sample
 
-This project contains several enhancements over the original AWS sample implementation.
+This implementation includes several improvements over the original AWS sample.
 
-## Cost Analysis Improvements
+## Cost Analysis Enhancements
 
-### Enhanced Cost Analysis Agent
+- Improved Bedrock agent instructions for better orchestration and response quality
+- Stronger action group validation to reduce incorrect interpretations
+- Enhanced grouping logic for cost analysis queries
+- Improved regional cost analysis using Availability Zone grouping
+- Better response formatting and consistency
+- OpenAPI schema improvements for clearer Bedrock reasoning
+- Added explicit response interpretation guardrails
 
-Improved Bedrock agent orchestration and reasoning:
-
-- improved action group selection
-- grouping validation logic
-- stricter response interpretation
-- reduced hallucination risk
-- better handling of regional/account/service breakdowns
-- improved response formatting
-
-### Improved Cost Grouping Support
-
-Enhanced AWS cost analysis support for:
+### Supported Cost Analysis Views
 
 - AWS Service
 - Linked Account
@@ -77,38 +56,17 @@ Enhanced AWS cost analysis support for:
 - Availability Zone
 - Billing Entity
 
-### Improved OpenAPI Schema
-
-Updated schema behaviour:
-
-- renamed generic grouped response field to `top_10_items`
-- added explicit `group_by` validation
-- added schema guardrails and warnings
-- improved action descriptions
-
 ---
 
-## Cost Optimization Improvements
+## Cost Optimization Enhancements
 
-### Enhanced Cost Optimization Agent
-
-Improved optimization workflows:
-
-- prioritises recommendations by estimated savings
-- separates quick wins from validation-required changes
-- improves recommendation ranking
-- improves resource-level recommendation handling
-- improves recommendation interpretation
-
-### Improved Trusted Advisor Integration
-
-Enhanced:
-
-- recommendation summaries
-- recommendation descriptions
-- resource lookup workflows
-- savings interpretation
-- recommendation prioritisation
+- Improved cost optimization agent reasoning
+- Better Trusted Advisor recommendation prioritisation
+- Savings-based recommendation ranking
+- Quick win identification
+- Risk and effort classification guidance
+- Improved resource-level recommendation lookup
+- Better recommendation descriptions and Bedrock function guidance
 
 ---
 
@@ -122,15 +80,15 @@ Enhanced:
 
 # Solution Architecture
 
-This solution uses Amazon Bedrock multi-agent collaboration to provide AWS FinOps insights through specialised agents.
+The solution uses Amazon Bedrock multi-agent collaboration with specialist FinOps agents.
 
 ## Agent Architecture
 
 | Agent | Role | Responsibilities | AWS Services Used |
 |------|------|------------------|------------------|
-| **Supervisor Agent** | Request Orchestrator | Receives user questions, determines intent, routes requests to the correct specialist agent, and combines responses for multi-step workflows. | Amazon Bedrock Agents |
-| **Cost Insights Agent** | Spend Analysis Specialist | Analyses AWS historical spend, cost trends, service-level costs, linked account spend, usage type breakdowns, Availability Zone/regional cost views, and billing insights. | AWS Cost Explorer, Lambda, Bedrock |
-| **Cost Optimization Agent** | Savings Specialist | Retrieves AWS Trusted Advisor cost optimization findings, prioritises savings opportunities, shows affected resources, separates quick wins from validation-required recommendations. | AWS Trusted Advisor, Lambda, Bedrock |
+| **Supervisor Agent** | Request Orchestrator | Receives user requests, determines intent, routes questions to the appropriate specialist agent, and coordinates multi-step responses. | Amazon Bedrock Agents |
+| **Cost Insights Agent** | Spend Analysis Specialist | Analyses AWS historical spend, service-level cost drivers, linked account spend, usage type analysis, billing insights, and regional cost breakdowns. | AWS Cost Explorer, AWS Lambda, Amazon Bedrock |
+| **Cost Optimization Agent** | Savings Specialist | Retrieves Trusted Advisor cost optimization recommendations, ranks savings opportunities, identifies quick wins, and shows affected resources. | AWS Trusted Advisor, AWS Lambda, Amazon Bedrock |
 
 ---
 
@@ -154,45 +112,30 @@ Lambda Action Groups
 
 ---
 
-# Components
-
-| Component | Purpose |
-|---------|---------|
-| AWS Amplify | Hosts the chatbot web application |
-| Amazon Cognito | User authentication and identity management |
-| Amazon Bedrock | Multi-agent orchestration |
-| Amazon Nova | Foundation model used by agents |
-| AWS Lambda | Executes backend action groups |
-| AWS Cost Explorer | Historical cost and usage analysis |
-| AWS Trusted Advisor | Cost optimization recommendations |
-| CloudFormation | Infrastructure deployment |
-
----
-
 # Pre-Requisites
 
 Before deployment, ensure the following services and permissions are available.
 
 ## AWS Services
 
-- Amazon Bedrock enabled in your AWS Region
+- Amazon Bedrock enabled in your target AWS Region
 - Access to Amazon Nova foundation models
 - AWS Cost Explorer enabled
 - AWS Trusted Advisor enabled
-- Amazon Cognito access enabled
-- AWS Amplify access enabled
+- Amazon Cognito access
+- AWS Amplify access
 
 ---
 
 ## AWS Support Plan Requirement
 
-Trusted Advisor cost optimization recommendations require one of the following support plans:
+Trusted Advisor cost optimization recommendations require one of the following:
 
 - AWS Business Support
 - AWS Enterprise On-Ramp
 - AWS Enterprise Support
 
-Basic Support is not sufficient for full optimization recommendations.
+**Basic Support is not sufficient for full cost optimization recommendations.**
 
 ---
 
@@ -224,7 +167,7 @@ Deploy the provided frontend ZIP package using AWS Amplify.
 3. Upload the frontend ZIP package
 4. Complete deployment
 
-Once deployment completes, Amplify will provide a hosted application URL.
+Amplify will generate a hosted application URL.
 
 Example:
 
@@ -242,7 +185,7 @@ Deploy the CloudFormation template:
 deployment/cfn-finops-bedrock-multiagent-nova.yaml
 ```
 
-Example deployment:
+Example:
 
 ```bash
 aws cloudformation deploy \
@@ -261,12 +204,12 @@ During deployment:
 
 ## Step 3 — Retrieve CloudFormation Outputs
 
-After deployment completes, capture the following outputs:
+After deployment, capture the following outputs:
 
 | Output | Purpose |
 |------|---------|
-| Agent ID | Bedrock Agent Identifier |
-| Agent Alias ID | Bedrock Agent Alias |
+| Agent ID | Bedrock Agent identifier |
+| Agent Alias ID | Bedrock Agent alias |
 | Cognito User Pool ID | Authentication configuration |
 | Cognito Identity Pool ID | Federated identity configuration |
 | AWS Region | Frontend configuration |
@@ -275,7 +218,7 @@ After deployment completes, capture the following outputs:
 
 ## Step 4 — Configure Frontend
 
-Update the Amplify frontend configuration using the CloudFormation outputs from Step 3.
+Update the frontend configuration using the CloudFormation outputs from Step 3.
 
 Redeploy the frontend if required.
 
@@ -292,7 +235,7 @@ Login using:
 
 # Sample Questions
 
-## Cost Analysis Questions
+## Cost Analysis
 
 ```text
 What were my AWS costs last month?
@@ -316,7 +259,7 @@ Show my AWS usage type breakdown for this month.
 
 ---
 
-## Cost Optimization Questions
+## Cost Optimization
 
 ```text
 What are my current AWS cost saving opportunities?
@@ -348,52 +291,12 @@ Recommended hardening activities:
 
 - IAM least privilege review
 - Cognito security hardening
-- API throttling and abuse controls
-- logging and monitoring
+- production authentication controls
 - Bedrock access restrictions
 - frontend configuration protection
-- production authentication review
+- logging and monitoring
+- API throttling and abuse controls
 - network access controls
-
----
-
-# Troubleshooting
-
-## CloudFormation OpenAPI Errors
-
-If deployment fails with:
-
-```text
-Failed to create OpenAPI 3 model
-```
-
-Validate:
-
-- JSON commas
-- OpenAPI formatting
-- YAML indentation
-- schema property nesting
-
----
-
-## Trusted Advisor Returns No Results
-
-Verify:
-
-- support plan eligibility
-- Trusted Advisor access
-- AWS Organization permissions
-- regional availability
-
----
-
-## Bedrock Access Errors
-
-Verify:
-
-- Bedrock enabled in target Region
-- access granted to Amazon Nova models
-- IAM permissions for Bedrock agents
 
 ---
 
@@ -401,13 +304,14 @@ Verify:
 
 Potential roadmap items:
 
-- Cognito Hosted UI with SAML/OIDC federation
-- Cost anomaly detection agent
+- Cognito Hosted UI with SAML / OIDC federation
+- enterprise SSO integration
+- cost anomaly detection agent
 - Savings Plans recommendation agent
 - Reserved Instance recommendation agent
 - tagging compliance analysis
 - AWS budget monitoring
-- Slack / Microsoft Teams integration
+- Slack / Microsoft Teams chatbot integration
 - API Gateway backend integration
 - reporting dashboards
 - historical trend visualisations
@@ -426,22 +330,6 @@ Potential roadmap items:
 | Amazon Cognito Documentation | Authentication and identity management |
 | AWS Amplify Documentation | Frontend hosting |
 | AWS Lambda Documentation | Backend execution |
-
----
-
-# Reference Links
-
-| Service | Link |
-|--------|------|
-| AWS Sample Repository | https://github.com/aws-solutions-library-samples/guidance-for-cost-analysis-and-optimization-with-amazon-bedrock-agents |
-| Amazon Bedrock Agents | https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html |
-| Bedrock Multi-Agent Collaboration | https://docs.aws.amazon.com/bedrock/latest/userguide/agents-multi-agent-collaboration.html |
-| Amazon Nova Models | https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-nova.html |
-| AWS Cost Explorer API | https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetCostAndUsage.html |
-| AWS Trusted Advisor API | https://docs.aws.amazon.com/trustedadvisor/latest/APIReference/Welcome.html |
-| Amazon Cognito | https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html |
-| AWS Amplify | https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html |
-| AWS Lambda | https://docs.aws.amazon.com/lambda/latest/dg/welcome.html |
 
 ---
 
