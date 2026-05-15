@@ -296,20 +296,6 @@ Potential roadmap items:
 - reporting dashboards
 - historical trend visualisations
 
----
-
-# References
-
-| Reference | Description |
-|---------|-------------|
-| AWS Sample Solution | Original AWS reference implementation |
-| Amazon Bedrock Agents Documentation | Multi-agent orchestration |
-| Amazon Nova Documentation | Foundation model documentation |
-| AWS Cost Explorer API | Historical spend analysis |
-| AWS Trusted Advisor API | Cost optimization recommendations |
-| Amazon Cognito Documentation | Authentication and identity management |
-| AWS Amplify Documentation | Frontend hosting |
-| AWS Lambda Documentation | Backend execution |
 
 ---
 
