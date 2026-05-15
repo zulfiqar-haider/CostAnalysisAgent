@@ -14,6 +14,11 @@ Show my AWS cost by linked account for April 2026.
 Which AWS services cost the most this month?
 Show AWS cost by region for the last 30 days.
 
+What are my current AWS cost saving opportunities?
+Show the top 5 cost optimization recommendations.
+Which recommendations have the highest monthly savings?
+Show affected resources for the highest saving recommendation.
+
 
 Reference Architecture:
 
