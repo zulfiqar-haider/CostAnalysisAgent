@@ -9,11 +9,19 @@ Deployment Steps:
 5- The Output from Cloud formation template will be used to configure the Cost Analysis chat bot in Step 2.
 
 Sample Questions:
+What were my AWS costs last month?
+Show my AWS cost by linked account for April 2026.
+Which AWS services cost the most this month?
+Show AWS cost by region for the last 30 days.
 
 
 Reference Architecture:
 
 <img width="1369" height="862" alt="image" src="https://github.com/user-attachments/assets/548fd570-dbea-4ce6-a100-2a2c8ab870df" />
 
+Pre-Requisites:
+- The userlying services uses AWS Trusted Advisor recommendation. Ensure Support plan > Basic
+- Trusted Advisor is enabled for AWS Org.
 
+  
 Note: forked from https://github.com/aws-solutions-library-samples/guidance-for-cost-analysis-and-optimization-with-amazon-bedrock-agents
