@@ -293,5 +293,7 @@ Potential roadmap items:
 # License / Attribution
 
 This project is based on AWS sample guidance and has been customised and enhanced for improved AWS FinOps use cases.
+
+
 Original AWS sample:
 (https://github.com/aws-solutions-library-samples/guidance-for-cost-analysis-and-optimization-with-amazon-bedrock-agents)
