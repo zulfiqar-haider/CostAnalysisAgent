@@ -159,7 +159,7 @@ https://main.xxxxxx.amplifyapp.com
 
 ## Step 2 — Deploy Backend Infrastructure
 
-Deploy the CloudFormation template:
+Deploy the CloudFormation template using console or using aws cli.
 
 ```text
 deployment/cfn-finops-bedrock-multiagent-nova.yaml
