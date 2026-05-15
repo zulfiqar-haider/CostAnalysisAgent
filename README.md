@@ -270,13 +270,8 @@ This project is based on an AWS sample solution and should be reviewed before pr
 Recommended hardening activities:
 
 - IAM least privilege review
-- Cognito security hardening
-- production authentication controls
-- Bedrock access restrictions
-- frontend configuration protection
+- Cognito security hardening e.g. enable MFA.
 - logging and monitoring
-- API throttling and abuse controls
-- network access controls
 
 ---
 
@@ -284,16 +279,12 @@ Recommended hardening activities:
 
 Potential roadmap items:
 
-- Cognito Hosted UI with SAML / OIDC federation
-- enterprise SSO integration
-- cost anomaly detection agent
+- Cognito Hosted UI with SAML federation for SSO integration
 - Savings Plans recommendation agent
-- Reserved Instance recommendation agent
 - tagging compliance analysis
 - AWS budget monitoring
 - Slack / Microsoft Teams chatbot integration
-- API Gateway backend integration
-- reporting dashboards
+- Enhance reporting e.g download data using csv or pdf's.
 - historical trend visualisations
 
 
@@ -302,7 +293,5 @@ Potential roadmap items:
 # License / Attribution
 
 This project is based on AWS sample guidance and has been customised and enhanced for improved AWS FinOps use cases.
-
 Original AWS sample:
-
 https://github.com/aws-solutions-library-samples/guidance-for-cost-analysis-and-optimization-with-amazon-bedrock-agents
